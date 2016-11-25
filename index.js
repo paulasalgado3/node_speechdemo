@@ -48,6 +48,18 @@ app.get(/^(.+)$/, function(req, res){
 	case '/izquierda':
 		wss_externo.send('izquierda');
 		break;
+	case '/pausa':
+		wss_externo.send('pausa');
+		break;	
+	case '/escalarmas':
+		wss_externo.send('escalarmas');
+		break;
+	case '/escalarmenos':
+                wss_externo.send('escalarmenos');
+                break;
+	case '/escalarnormal':
+		wss_externo.send('escalarnormal');
+		break;
     	default: res.sendFile( __dirname + req.params[0]); 
     }
  });

@@ -14,13 +14,39 @@
 var connection = new WebSocket('wss://10.105.231.63:8443/' );
 connection.onmessage = function (e) {        
 	console.log('Server: ' + e.data);
-	if (e.data == "derecha" || e.data == "derecho"){
-		panorama_animate(document.getElementsByClassName('panorama-container')[0],'left');
-	}else if(e.data =="izquierda" || e.data=="izquierdo"){
-		panorama_animate(document.getElementsByClassName('panorama-container')[0],'right');
-
+	switch(e.data){
+		case 'derecha':
+			panorama_animate(document.getElementsByClassName('panorama-container')[0],'left');
+			break;
+		case 'derecho':
+			panorama_animate(document.getElementsByClassName('panorama-container')[0],'left');
+			break;
+		case 'izquierda':
+			panorama_animate(document.getElementsByClassName('panorama-container')[0],'right');
+			break;
+		case 'izquierdo':
+			panorama_animate(document.getElementsByClassName('panorama-container')[0],'right');
+			break;
+		case 'pausa':
+			panorama_stop(document.getElementsByClassName('panorama-container')[0]);
+			break;
+		case 'escalarmas':
+			var escala = parseInt((document.getElementById('page').style.transform).match(/\d+/g).map(Number))+1; 
+			document.getElementById('page').style.transform='scale('+ escala +')';
+			break;
+		case 'escalarmenos':
+			var escala = parseInt((document.getElementById('page').style.transform).match(/\d+/g).map(Number))-1;
+                        document.getElementById('page').style.transform='scale('+ escala +')';
+                        break;
+		case 'escalarnormal':
+			document.getElementById('page').style.transform='scale(1)';
+                        break;
+		default:	
 	}
+			
+
 };
+
 </script>
 
 <script type="text/javascript">
@@ -125,7 +151,7 @@ var elemWidth = 2448;
 
 <h1>jQuery virtual tour</h1>
 
-<div id="page">
+<div id="page" style='transform:scale(1)'>
 	<p>
 		<a href="http://openstudio.fr/jQuery-virtual-tour.html?lang=en">download and online documentation</a>
 	</p>
