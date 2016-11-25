@@ -2,7 +2,6 @@
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
       <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<title>jQuery virtual tour</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link rel="shortcut icon" href="favicon.ico" />
 <link rel="stylesheet" type="text/css" href="css/jquery.panorama.css" media="screen" />
@@ -41,6 +40,10 @@ connection.onmessage = function (e) {
 		case 'escalarnormal':
 			document.getElementById('page').style.transform='scale(1)';
                         break;
+		case 'cambiar':
+			var imagenes = document.getElementsByClassName('advancedpanorama');
+			imagenes[0].src='./img/imagen2.jpg';
+			imagenes[1].src='./img/imagen2.jpg';
 		default:	
 	}
 			
@@ -149,13 +152,8 @@ var elemWidth = 2448;
 </head>
 <body >
 
-<h1>jQuery virtual tour</h1>
 
 <div id="page" style='transform:scale(1)'>
-	<p>
-		<a href="http://openstudio.fr/jQuery-virtual-tour.html?lang=en">download and online documentation</a>
-	</p>
-	
 	<img src="img/sculpteur.jpg" class="advancedpanorama" width="2448" height="375" usemap="testmap" alt="Atelier du sculpteur" />
 	<map id="testmap" name="testmap"> 
 		<area shape="rect" coords="1653,72,1839,255" href="salleformation.html" alt="vers la salle de formation" /> 
@@ -163,11 +161,6 @@ var elemWidth = 2448;
 		<area shape="rect" coords="1920,276,2070,351" href="img/gouges.jpg" alt="gouges" class="thickbox" /> 
 	</map>
 </div>
-
-<button onClick="panorama_animate(document.getElementsByClassName('panorama-container')[0],'left')">Derecha</button>
-<button onClick="panorama_stop(document.getElementsByClassName('panorama-container')[0])">Stop</button>
-<button onClick="panorama_animate(document.getElementsByClassName('panorama-container')[0],'right')">Izquierda</button>
-
 
 </body>
 </html>

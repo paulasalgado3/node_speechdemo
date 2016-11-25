@@ -60,6 +60,9 @@ app.get(/^(.+)$/, function(req, res){
 	case '/escalarnormal':
 		wss_externo.send('escalarnormal');
 		break;
+	case '/cambiar':
+		wss_externo.send('cambiar');
+		break;
     	default: res.sendFile( __dirname + req.params[0]); 
     }
  });

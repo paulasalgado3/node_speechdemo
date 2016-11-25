@@ -55,7 +55,7 @@
 				$(panoContainer).stop();
 			});
 			if (imgTitle) {
-				panoViewport.append("<p class='flipv panorama-title'>"+imgTitle+"</p>");
+			//	panoViewport.append("<p class='flipv panorama-title'>"+imgTitle+"</p>");
 			}		
 			
 		});
