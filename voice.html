@@ -29,9 +29,17 @@
          {
             padding: 0;
          }
+	#mic{
+		background-image:url("./img/mic.jpg");
+		background-size: 100% 100%;
+		position:absolute;
+
+
+	}
       </style>
    </head>
    <body>
+	<div id='mic'></div>
       <a href="http://www.sitepoint.com/introducing-web-speech-api/">Go back to the article</a>
 
       <h1>Web Speech API</h1>
@@ -146,6 +154,43 @@ connection.onmessage = function (e) {
                document.getElementById('log').textContent = '';
             });
          }
+
+
+	var ancho = 696;
+	var alto = 932;
+	var alto_100 = screen.height;
+	var rel_alto = (alto_100/alto);
+	var mic = document.getElementById('mic');
+	mic.style.width=(ancho*rel_alto)+ 'px';
+	mic.style.height= '100%';
+
+
+	//reconocimiento continuo
+
+	  transcription.textContent = '';
+               // Set if we need interim results
+               var isInterimResults = false;
+               recognizer.lang = 'es-AR';
+               recognizer.continuous = !isInterimResults;
+               recognizer.interimResults = isInterimResults;
+               try {
+                  recognizer.start();
+                  logEvent('Recognition started');
+               } catch(ex) {
+                  logEvent('Recognition error: ' + ex.message);
+               }
+	recognizer.addEventListener('end', function() {
+               logEvent('Recognition ended');
+	       try {
+                  recognizer.start();
+                  logEvent('Recognition started');
+               } catch(ex) {
+                  logEvent('Recognition error: ' + ex.message);
+               }
+
+            });
+
+	
       </script>
    </body>
 </html>
