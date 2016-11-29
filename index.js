@@ -70,6 +70,10 @@ app.get(/^(.+)$/, function(req, res){
 		wss_externo.send('cambiar');
 		res.end();
 		break;
+	case '/entrar':
+		wss_externo.send('entrar');
+		res.end();
+		break;
     	default: res.sendFile( __dirname + req.params[0]); 
     }
  });

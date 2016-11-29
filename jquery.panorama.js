@@ -11,18 +11,21 @@
 	$.fn.panorama = function(options) {
 		this.each(function(){ 
 			var settings = {
-				viewport_width: 600,
-				speed: 20000,
+				viewport_width: screen.width,
+				speed: 100000,
 				direction: 'left',
-				control_display: 'auto',
+				control_display: 'no',
 				start_position: 0,
 				auto_start: true,
 				mode_360: true
 			};
 			if(options) $.extend(settings, options);
-		
-			var elemWidth = parseInt($(this).attr('width'));
-			var elemHeight = parseInt($(this).attr('height'));
+			var rel = screen.height / 375;
+			var elemWidth = (parseInt($(this).attr('width')))*rel;
+			
+			console.log(elemWidth);
+			//var elemHeight = parseInt($(this).attr('height'));
+			var elemHeight = screen.height;
 			var currentElement = this;
 			var panoramaViewport, panoramaContainer;
 			var bMouseMove = false;
@@ -99,8 +102,8 @@
 				return false;
 			});
 			
-			if (settings.control_display == 'yes') {
-				panoramaViewport.find('.panorama-control').show();
+			if (settings.control_display == 'no') {
+				panoramaViewport.find('.panorama-control').hide();
 			} else if (settings.control_display == 'auto') {
 				panoramaViewport.bind('mouseover', function(){
 					$(this).find('.panorama-control').show();

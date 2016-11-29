@@ -9,7 +9,7 @@
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
 <script type="text/javascript" src="jquery.panorama.js"></script>
 <script>
-
+var margenIzquierdo = '';
 var connection = new WebSocket('wss://10.105.231.63:8443/' );
 connection.onmessage = function (e) {        
 	console.log('Server: ' + e.data);
@@ -44,6 +44,15 @@ connection.onmessage = function (e) {
 			var imagenes = document.getElementsByClassName('advancedpanorama');
 			imagenes[0].src='./img/imagen2.jpg';
 			imagenes[1].src='./img/imagen2.jpg';
+		case 'entrar':
+			if(margenIzquierdo >= 930 && margenIzquierdo <= 1050 ){
+				var imagenes = document.getElementsByClassName('advancedpanorama');
+                        	imagenes[0].src='./img/imagen2.jpg';
+                        	imagenes[1].src='./img/imagen2.jpg';
+
+
+			};
+			break;
 		default:	
 	}
 			
@@ -60,19 +69,21 @@ connection.onmessage = function (e) {
 	         });
 	});
 
+panorama = document.getElementsByClassName("panorama-viewport")[0];
+//var elemWidth = 2448;
+var rel = screen.height / 375;
+var elemWidth = 2448 * rel;
 
 var settings = {
-				viewport_width: 600,
-				speed: 20000,
+				viewport_width: screen.width,
+				speed: 100000,
 				direction: 'left',
-				control_display: 'auto',
+				control_display: 'no',
 				start_position: 0,
 				auto_start: true,
 				mode_360: true
 			};
 
-var panorama = document.getElementsByClassName("panorama-viewport")[0];
-var elemWidth = 2448;
 		function panorama_animate(element,direccion) {
 			$(this).parent().css('margin-left', '-'+settings.start_position+'px');
 			currentPosition = 0-parseInt($(element).css('margin-left'));
@@ -107,9 +118,10 @@ var elemWidth = 2448;
 		};
 		function panorama_stop(element){
 			$(element).stop();
+			margenIzquierdo = 0-parseInt($(element).css('margin-left')); 
 
 		};
-	
+
 </script>
 <script type="text/javascript" src="js/cvi_text_lib.js"></script>
 <script type="text/javascript" src="../jquery.advanced-panorama.js"></script>
@@ -125,6 +137,7 @@ var elemWidth = 2448;
 	body {
 		background: #595959;
 		text-align: center;
+		margin: 0px;
 	}
 	h1 {
 		color: white;
@@ -141,7 +154,7 @@ var elemWidth = 2448;
 		color: white;
 	}
 	#page .panorama-viewport {
-		border: 20px solid #414141;
+		/*border: 20px solid #414141;*/
 		margin-left: auto;
 		margin-right: auto;
 	}
@@ -154,13 +167,22 @@ var elemWidth = 2448;
 
 
 <div id="page" style='transform:scale(1)'>
-	<img src="img/sculpteur.jpg" class="advancedpanorama" width="2448" height="375" usemap="testmap" alt="Atelier du sculpteur" />
+	<img src="img/sculpteur.jpg" class="advancedpanorama" width=elemWidth height="100%" usemap="testmap" alt="Atelier du sculpteur" />
 	<map id="testmap" name="testmap"> 
 		<area shape="rect" coords="1653,72,1839,255" href="salleformation.html" alt="vers la salle de formation" /> 
 		<area shape="rect" coords="2013,114,2091,210" href="img/statue1.jpg" alt="statues" class="thickbox" /> 
 		<area shape="rect" coords="1920,276,2070,351" href="img/gouges.jpg" alt="gouges" class="thickbox" /> 
 	</map>
 </div>
+<script>
 
+var page = document.getElementById('page');
+page.style.width=screen.width+'px';
+page.style.height=screen.height+'px';
+var rel = screen.height / 375;
+var elemWidth = 2448 * rel;
+
+
+</script>
 </body>
 </html>
