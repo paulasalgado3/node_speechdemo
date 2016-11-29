@@ -44,24 +44,31 @@ app.get(/^(.+)$/, function(req, res){
             break;
 	case '/derecha':
 		wss_externo.send('derecha');
+		res.end();
 		break;
 	case '/izquierda':
 		wss_externo.send('izquierda');
+		res.end();
 		break;
 	case '/pausa':
 		wss_externo.send('pausa');
+		res.end();
 		break;	
 	case '/escalarmas':
 		wss_externo.send('escalarmas');
+		res.end();
 		break;
 	case '/escalarmenos':
                 wss_externo.send('escalarmenos');
+		res.end();
                 break;
 	case '/escalarnormal':
 		wss_externo.send('escalarnormal');
+		res.end();
 		break;
 	case '/cambiar':
 		wss_externo.send('cambiar');
+		res.end();
 		break;
     	default: res.sendFile( __dirname + req.params[0]); 
     }
