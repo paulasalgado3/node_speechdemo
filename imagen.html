@@ -22,9 +22,11 @@ connection.onmessage = function (e) {
 			break;
 		case 'izquierda':
 			panorama_animate(document.getElementsByClassName('panorama-container')[0],'right');
+			console.log('izquierda');
 			break;
 		case 'izquierdo':
 			panorama_animate(document.getElementsByClassName('panorama-container')[0],'right');
+			console.log('izquierda');
 			break;
 		case 'pausa':
 			panorama_stop(document.getElementsByClassName('panorama-container')[0]);
@@ -169,9 +171,10 @@ var settings = {
 <div id="page" style='transform:scale(1)'>
 	<img src="img/sculpteur.jpg" class="advancedpanorama" width=elemWidth height="100%" usemap="testmap" alt="Atelier du sculpteur" />
 	<map id="testmap" name="testmap"> 
+	//left 0 top 1 width 2-0 height 3-1
 		<area shape="rect" coords="1653,72,1839,255" href="salleformation.html" alt="vers la salle de formation" /> 
 		<area shape="rect" coords="2013,114,2091,210" href="img/statue1.jpg" alt="statues" class="thickbox" /> 
-		<area shape="rect" coords="1920,276,2070,351" href="img/gouges.jpg" alt="gouges" class="thickbox" /> 
+		<area shape="rect" coords="1895,458,1990,618" href="img/gouges.jpg" alt="gouges" class="thickbox" /> 
 	</map>
 </div>
 <script>

@@ -49,6 +49,7 @@ app.get(/^(.+)$/, function(req, res){
 	case '/izquierda':
 		wss_externo.send('izquierda');
 		res.end();
+		console.log('izquierda');
 		break;
 	case '/pausa':
 		wss_externo.send('pausa');
