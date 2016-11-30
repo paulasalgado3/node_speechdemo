@@ -47,12 +47,13 @@ connection.onmessage = function (e) {
 			imagenes[0].src='./img/imagen2.jpg';
 			imagenes[1].src='./img/imagen2.jpg';
 		case 'entrar':
-			if(margenIzquierdo >= 930 && margenIzquierdo <= 1050 ){
+			console.log(margenIzquierdo);
+			if(margenIzquierdo >= 700 && margenIzquierdo <= 1100 ){
 				var imagenes = document.getElementsByClassName('advancedpanorama');
                         	imagenes[0].src='./img/imagen2.jpg';
                         	imagenes[1].src='./img/imagen2.jpg';
-
-
+				document.getElementsByClassName('panorama-area')[0].style.display="none";
+				document.getElementsByClassName('panorama-area')[1].style.display="none";
 			};
 			break;
 		default:	
@@ -171,10 +172,8 @@ var settings = {
 <div id="page" style='transform:scale(1)'>
 	<img src="img/sculpteur.jpg" class="advancedpanorama" width=elemWidth height="100%" usemap="testmap" alt="Atelier du sculpteur" />
 	<map id="testmap" name="testmap"> 
-	//left 0 top 1 width 2-0 height 3-1
-		<area shape="rect" coords="1653,72,1839,255" href="salleformation.html" alt="vers la salle de formation" /> 
-		<area shape="rect" coords="2013,114,2091,210" href="img/statue1.jpg" alt="statues" class="thickbox" /> 
-		<area shape="rect" coords="1895,458,1990,618" href="img/gouges.jpg" alt="gouges" class="thickbox" /> 
+		<area id="puerta" shape="rect" coords="1630,220,1880,1055"  alt="Pasillo frio" /> 
+		
 	</map>
 </div>
 <script>
