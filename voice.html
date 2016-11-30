@@ -22,7 +22,7 @@
          fieldset
          {
             border: 0;
-            margin: 0.5em 0;
+            /*margin: 0.5em 0;*/
             padding: 0;
          }
          legend
@@ -33,13 +33,18 @@
 		background-image:url("./img/mic.jpg");
 		background-size: 100% 100%;
 		position:absolute;
+		margin: auto auto;
 
+	}
 
+	#invisible{
+		display:none;
 	}
       </style>
    </head>
    <body>
 	<div id='mic'></div>
+<div id=invisible>
       <a href="http://www.sitepoint.com/introducing-web-speech-api/">Go back to the article</a>
 
       <h1>Web Speech API</h1>
@@ -84,9 +89,9 @@
          (<a href="https://twitter.com/AurelioDeRosa">@AurelioDeRosa</a>).<br />
          This demo is part of the <a href="https://github.com/AurelioDeRosa/HTML5-API-demos">HTML5 API demos repository</a>.
       </small>
+</div>
 
       <script>
-
 var connection = new WebSocket('wss://10.105.231.63:8443/' , ['soap','xmpp']);
 connection.onmessage = function (e) {        
 	console.log('Server: ' + e.data);
@@ -155,16 +160,31 @@ connection.onmessage = function (e) {
             });
          }
 
+	document.body.style.width = screen.widht;
+	document.body.style.height = screen.height;
+	console.log(document.body.style.width);
+
+
 
 	var ancho = 696;
 	var alto = 932;
-	var alto_100 = screen.height;
-	var rel_alto = (alto_100/alto);
+	var screenwidth = screen.width;
+	var screenheight = screen.height;
+	var rel = screenwidth/screenheight;
 	var mic = document.getElementById('mic');
-	mic.style.width=(ancho*rel_alto)+ 'px';
-	mic.style.height= '100%';
+	
+	if(rel>1.4){
+		//16:9
+		mic.style.width = '32%';
+		mic.style.height = '100%';
 
-
+	}else{
+		//4:3
+		mic.style.width = '95%';
+		mic.style.height = '95%';
+		
+	}
+	
 	//reconocimiento continuo
 
 	  transcription.textContent = '';
