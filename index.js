@@ -6,7 +6,7 @@ var bodyParser = require("body-parser");
 var qr = require ('qr-image');
 var HOSTIP = process.env.HOSTIP;
 var voice = qr.image("https://"+HOSTIP+"/voice" , {type: 'png'});
-login.pipe(require('fs').createWriteStream('voice.png'));
+voice.pipe(require('fs').createWriteStream('voice.png'));
 
 var serverConfig = {
     key: fs.readFileSync('./server.key'),
